@@ -242,12 +242,18 @@
 
             // Format kodeJenis sesuai kebutuhan Anda
             // var nomorUrut = ('000' + latestID).slice(-3);
-            var kodeJenis = kodeKategori + ' - ' + kodeKlasifikasi + ' - ' + ' - ' + tahunMesin;
+
+            // langsung dengan nomor urut yang sudah ada
+            // var kodeJenis = kodeKategori + ' - ' + kodeKlasifikasi + ' - ' + ' - ' + tahunMesin;
+            var kodeJenisCurrent = "{{ $datamesin->kode_jenis }}";
+            var nomorUrut = kodeJenisCurrent.split('-')[2].trim();
+            var kodeJenis = kodeKategori + ' - ' + kodeKlasifikasi + ' - ' + nomorUrut + ' - ' + tahunMesin;
             $('#kode_jenis').val(kodeJenis);
 
 
             // Format kodeJenis sesuai kebutuhan Anda
-            $.ajax({
+            // Tidak Diperlukan karena sudah mempunyai nomor urut
+            /* $.ajax({
                 url: "/get-latest-mesin-by-id/" + selectedKategori.val() + "/" + selectedKlasifikasi.val() + "/{{ $datamesin->id }}",
                 method: "GET",
                 success: function(response) {
@@ -279,7 +285,7 @@
                 error: function(xhr, status, error) {
                     console.error('Gagal mengambil ID terbaru: ' + error);
                 }
-            });
+            }); */
         }
         /*
                 function incrementNomorUrut(inputString) {
